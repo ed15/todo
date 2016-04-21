@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="google" value="notranslate"/>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Ejercicio Persistencia Local</title>
+  	<link rel="stylesheet" type="text/css" href="css/tabla.css">
+	<link rel="stylesheet" type="text/css" href="css/form.css">
+</head>
+<body>
+	<head>
+  	<center>
+    	<div class = "titulo">Bloc de Notas Electiva Profesional III</div>
+  	</center>
+	</head>
+	<hr>
+	<div id = "cajon1">
+			 <input type="text" id="txt1" placeholder = "Escriba aqui su nota" autocomplete="off"/>
+			 <p>
+			 <input type="button" id="guarda" value="Guardar Nota" onclick="addList('ToDoListTable')" />
+			 <p>
+			 <input type="button" value="Borrar Nota" onclick="deleteList('ToDoListTable')" />
+  </div>
+
+	<div id = "cajon2">
+
+			 <table id="ToDoListTable" width="950px" border="1"></table>
+
+	</div>
+
+	<script language="javascript">
+			function addList(myTable) {
+
+					var table = document.getElementById(myTable);
+          var rowCount = table.rows.length;
+					var row = table.insertRow(rowCount);
+        	var b=document.getElementById('txt1').value;
+
+var cell1 = row.insertCell(0);
+					var element1 = document.createElement("input");
+					element1.type = "text";
+					element1.style.width="100%";
+					element1.name = "txtbox[]";
+					element1.value=b;
+		cell1.appendChild(element1);
+var cell2 = row.insertCell(1);
+					var element2 = document.createElement("input");
+					element2.type = "checkbox";
+					element2.name="chkbox[]";
+					cell2.appendChild(element2);
+document.getElementById('txt1').value=" ";
+document.getElementById('pTotal').innerHTML= rowCount + 1;
+		 }
+
+			function deleteList(myTable) {
+
+					var table = document.getElementById(myTable);
+					var rowCount = table.rows.length;
+
+					for(var i=0; i<rowCount; i++) {
+							var row = table.rows[i];
+							var chkbox = row.cells[1].childNodes[0];
+							if(null != chkbox && true == chkbox.checked) {
+									table.deleteRow(i);
+									rowCount--;
+									i--;
+
+document.getElementById('pTotal').innerHTML= rowCount;
+
+					}
+			 }
+		}
+
+	</script>>
+</body>
+</html>
